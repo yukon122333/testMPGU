@@ -1,0 +1,556 @@
+
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Тест: Адаптация детей мигрантов в поликультурной образовательной среде</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f0f7ff;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            padding: 40px 20px;
+            color: #1a2c3e;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            padding: 30px 30px 50px;
+            transition: all 0.2s;
+        }
+
+        /* шапка */
+        .header {
+            border-bottom: 3px solid #ffb74d;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        h1 {
+            font-size: 1.9rem;
+            color: #1e466e;
+            line-height: 1.2;
+            max-width: 750px;
+        }
+
+        .creator {
+            font-size: 1rem;
+            background: #eef3fc;
+            padding: 8px 16px;
+            border-radius: 60px;
+            color: #2c5a7a;
+            font-weight: 500;
+            margin-top: 12px;
+        }
+
+        .sub {
+            background: #e9f0f9;
+            padding: 14px 20px;
+            border-radius: 28px;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+            color: #2c3e50;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .badge {
+            background: #ffb74d;
+            color: #2d3e50;
+            padding: 4px 14px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .question-card {
+            background: #ffffff;
+            border-radius: 24px;
+            margin-bottom: 28px;
+            padding: 20px 24px;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2edf7;
+            transition: all 0.2s;
+        }
+
+        .question-text {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            color: #1e466e;
+            padding-right: 10px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-left: 8px;
+        }
+
+        .option {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 0.98rem;
+            cursor: pointer;
+            padding: 6px 8px;
+            border-radius: 16px;
+            transition: background 0.15s;
+        }
+
+        .option:hover {
+            background: #f8fbfe;
+        }
+
+        input[type="radio"], input[type="checkbox"] {
+            margin-top: 3px;
+            width: 18px;
+            height: 18px;
+            accent-color: #2c7cb6;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        .question-type {
+            font-size: 0.7rem;
+            background: #eef2fa;
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            color: #2c5a7a;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 35px 0 25px;
+        }
+
+        button {
+            background: #2c7cb6;
+            border: none;
+            padding: 12px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            border-radius: 48px;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            font-family: inherit;
+        }
+
+        button:hover {
+            background: #1e5a86;
+            transform: scale(0.97);
+        }
+
+        .reset-btn {
+            background: #6c757d;
+        }
+
+        .reset-btn:hover {
+            background: #49555f;
+        }
+
+        .result-area {
+            background: #eef3fc;
+            border-radius: 28px;
+            padding: 20px 25px;
+            margin-top: 30px;
+            border-left: 6px solid #ffb74d;
+        }
+
+        .score {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #1e466e;
+        }
+
+        .feedback {
+            margin-top: 12px;
+            line-height: 1.45;
+        }
+
+        hr {
+            margin: 30px 0 10px;
+            border: none;
+            height: 1px;
+            background: #cbdde9;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #6f8faa;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                padding: 20px 18px 35px;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            .question-card {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📚 Социальные и психологические проблемы адаптации детей мигрантов в поликультурной образовательной среде</h1>
+        <div class="creator">✍️ Автор теста: <strong>Крычева Наталья Петровна</strong></div>
+    </div>
+    <div class="sub">
+        <span>📖 20 вопросов • теория + практика адаптации</span>
+        <span class="badge">✓ для самопроверки и занятий</span>
+    </div>
+
+    <form id="quizForm">
+        <!-- вопросы будут добавлены через JS, но прописываем контейнер -->
+        <div id="questionsContainer"></div>
+        <div class="actions">
+            <button type="button" id="checkBtn">✅ Проверить ответы</button>
+            <button type="button" id="resetBtn" class="reset-btn">🔄 Сбросить всё</button>
+        </div>
+    </form>
+    <div id="resultBlock" class="result-area" style="display: none;">
+        <div class="score" id="scoreValue"></div>
+        <div class="feedback" id="feedbackMsg"></div>
+    </div>
+    <hr>
+    <footer>
+        Тестовый инструментарий для исследования адаптации детей-мигрантов<br>
+        Разработано в рамках курсовой работы | Крычева Н.П.
+    </footer>
+</div>
+
+<script>
+    // ----- БАНК ВОПРОСОВ (20 вопросов с правильными ответами) -----
+    // Для каждого: текст, тип (radio или checkbox), варианты, массив правильных ответов (индексы начиная с 0)
+    const questionsData = [
+        { // 1
+            text: "1. Кто такой «инофон» в контексте школьного образования?",
+            type: "radio",
+            options: [
+                "Ребенок, имеющий гражданство другого государства.",
+                "Ребенок, для которого русский язык не является родным и которым он не владеет в полной мере.",
+                "Ребенок, временно находящийся на территории РФ.",
+                "Ребенок, говорящий на двух языках."
+            ],
+            correct: [1]   // индекс 1 (второй вариант)
+        },
+        { // 2
+            text: "2. Что из перечисленного является ключевым отличием «вынужденного переселенца» от «экономического мигранта»?",
+            type: "radio",
+            options: [
+                "Уровень дохода семьи.",
+                "Причина переезда: угроза жизни или здоровью (военные действия, преследования).",
+                "Наличие загранпаспорта.",
+                "Возраст ребенка."
+            ],
+            correct: [1]
+        },
+        { // 3
+            text: "3. Что понимается под «поликультурной образовательной средой»?",
+            type: "radio",
+            options: [
+                "Школа, где преподают несколько иностранных языков.",
+                "Среда, признающая культурное разнообразие, обеспечивающая равные права и уважение к традициям всех народов.",
+                "Класс, состоящий только из детей разных национальностей.",
+                "Наличие в школе музея культуры народов мира."
+            ],
+            correct: [1]
+        },
+        { // 4
+            text: "4. Соотнесите вид адаптации с ее сущностью (выберите верное утверждение):",
+            type: "radio",
+            options: [
+                "Социальная адаптация – усвоение норм и правил поведения в новом коллективе.",
+                "Психологическая адаптация – преодоление тревожности и принятие новой культурной идентичности.",
+                "Языковая адаптация – овладение русским языком как средством обучения и общения.",
+                "Верно все вышеперечисленное."
+            ],
+            correct: [3]   // последний вариант
+        },
+        { // 5
+            text: "5. Как называется состояние, которое ребенок-мигрант переживает в первые месяцы после переезда (чувство растерянности, тревоги, враждебности к новой культуре)?",
+            type: "radio",
+            options: ["Ностальгия.", "Культурный шок.", "Когнитивный диссонанс.", "Аккультурация."],
+            correct: [1]
+        },
+        { // 6
+            text: "6. Какая возрастная группа детей-мигрантов наиболее уязвима для развития глубоких психологических проблем (потеря идентичности, школьная неуспешность)?",
+            type: "radio",
+            options: ["Дошкольники (3-6 лет).", "Младшие школьники (7-10 лет).", "Подростки (11-15 лет) – в силу наложения кризиса идентичности на стресс миграции.", "Старшеклассники (16-18 лет)."],
+            correct: [2]
+        },
+        { // 7
+            text: "7. Какие эмоционально-волевые нарушения чаще всего проявляются у детей-мигрантов (выберите ДВА основных типа):",
+            type: "checkbox",
+            options: ["Повышенная агрессия, оппозиционное поведение.", "Аутизация, замкнутость, апатия, отказ от общения.", "Гиперактивность с дефицитом внимания.", "Логоневроз (заикание)."],
+            correct: [0, 1]   // первые два
+        },
+        { // 8
+            text: "8. Что является первичным и самым сильным когнитивным барьером для учебы ребенка-инофона?",
+            type: "radio",
+            options: ["Низкий уровень IQ.", "Отсутствие мотивации.", "Непонимание речи учителя и учебных текстов из-за языкового барьера.", "Конфликт с учителем."],
+            correct: [2]
+        },
+        { // 9
+            text: "9. Как миграция чаще всего влияет на семейные роли?",
+            type: "radio",
+            options: ["Роли не меняются.", "Мать начинает доминировать (быстрее находит работу и адаптируется), авторитет отца может падать (межпоколенческий конфликт).", "Дети полностью подчиняются воле родителей.", "Семья становится более патриархальной."],
+            correct: [1]
+        },
+        { // 10
+            text: "10. Что из перечисленного является фактором бытовой неустроенности семьи мигранта, влияющим на успеваемость ребенка?",
+            type: "radio",
+            options: ["Отсутствие доступа к высокоскоростному интернету.", "Проживание в общежитиях, съемных комнатах без условий для приготовления уроков.", "Наличие большого количества родственников.", "Отсутствие личного автомобиля."],
+            correct: [1]
+        },
+        { // 11
+            text: "11. Как правовая неопределенность статуса ребенка (отсутствие регистрации, патента у родителей) влияет на его образование?",
+            type: "radio",
+            options: ["Не влияет, все дети имеют право учиться.", "Ограничивает доступ к дополнительному образованию, кружкам, соц. стипендиям и питанию.", "Автоматически лишает права сдавать ОГЭ/ЕГЭ.", "Ребенок не может быть зачислен в школу."],
+            correct: [1]
+        },
+        { // 12
+            text: "12. Какая форма социальной изоляции наиболее характерна для детей-мигрантов в классе?",
+            type: "radio",
+            options: ["Открытая травля со стороны учителя.", "Буллинг со стороны одноклассников + игнорирование и отказ от совместной деятельности.", "Физическая агрессия со стороны администрации.", "Прямое вымогательство денег."],
+            correct: [1]
+        },
+        { // 13
+            text: "13. Какие стереотипы принимающего сообщества чаще всего становятся барьером?",
+            type: "radio",
+            options: ["«Дети мигрантов более талантливы».", "«Все мигранты имеют низкий культурный уровень и опасны» (стигматизация).", "«Им не нужна помощь, они справятся сами».", "«Они слишком быстро адаптируются»."],
+            correct: [1]
+        },
+        { // 14
+            text: "14. Как родители российских школьников чаще всего реагируют на наличие ребенка-мигранта в классе?",
+            type: "radio",
+            options: ["Активно помогают его семье.", "Выражают беспокойство и могут требовать перевода ребенка в другой класс.", "Не замечают его.", "Организуют сбор средств для его семьи."],
+            correct: [1]
+        },
+        { // 15
+            text: "15. Кто в школе должен быть ключевым координатором работы с семьей мигрантов (защита прав, взаимодействие с опекой, помощь в соц. вопросах)?",
+            type: "radio",
+            options: ["Учитель русского языка.", "Социальный педагог.", "Учитель физкультуры.", "Библиотекарь."],
+            correct: [1]
+        },
+        { // 16
+            text: "16. Какой специалист занимается коррекцией эмоциональных состояний (тревога, агрессия, депрессия) и проводит тренинги по сплочению класса?",
+            type: "radio",
+            options: ["Логопед.", "Педагог-психолог.", "Врач.", "Учитель ОБЖ."],
+            correct: [1]
+        },
+        { // 17
+            text: "17. Какая методика преподавания наиболее эффективна для ребенка-инофона на начальном этапе?",
+            type: "radio",
+            options: ["Погружение в среду носителей (метод «шоковой терапии»).", "Методика РКИ (русский как иностранный) с опорой на родной язык и визуализацию.", "Изучение по учебникам для русских детей.", "Заучивание грамматических правил наизусть."],
+            correct: [1]
+        },
+        { // 18
+            text: "18. Какое мероприятие лучше всего способствует формированию толерантного сознания у принимающего сообщества?",
+            type: "radio",
+            options: ["Классный час «День Победы».", "Фестиваль национальных культур с презентацией традиций и блюд народов мира.", "Субботник по уборке территории.", "Лекция о правилах дорожного движения."],
+            correct: [1]
+        },
+        { // 19
+            text: "19. Что должно быть обязательным элементом адаптационной программы для детей мигрантов?",
+            type: "radio",
+            options: ["Посещение церкви.", "«Школа русского языка» на этапе вхождения + тьюторское сопровождение.", "Освобождение от контрольных работ.", "Отдельный класс только для мигрантов."],
+            correct: [1]
+        },
+        { // 20
+            text: "20. Что из перечисленного является ключевым условием подготовки педагога к работе в поликультурном классе?",
+            type: "radio",
+            options: ["Знание английского языка.", "Повышение квалификации по программе «Поликультурное образование» и формирование толерантных установок.", "Наличие ученой степени.", "Стаж работы более 10 лет."],
+            correct: [1]
+        }
+    ];
+
+    // Функция рендера всех вопросов в контейнер
+    function renderQuiz() {
+        const container = document.getElementById('questionsContainer');
+        if (!container) return;
+        container.innerHTML = '';
+        questionsData.forEach((q, idx) => {
+            const card = document.createElement('div');
+            card.className = 'question-card';
+            const typeLabel = q.type === 'radio' ? '🔘 Один вариант' : '☑️ Можно выбрать несколько';
+            card.innerHTML = `
+                <div class="question-type">${typeLabel}</div>
+                <div class="question-text">${q.text}</div>
+                <div class="options" id="options-${idx}"></div>
+            `;
+            const optionsDiv = card.querySelector(`.options`);
+            q.options.forEach((opt, optIdx) => {
+                const inputType = q.type;
+                const nameAttr = q.type === 'radio' ? `q${idx}` : `q${idx}_${optIdx}`;
+                const input = document.createElement('input');
+                input.type = inputType;
+                input.name = inputType === 'radio' ? nameAttr : `chk_${idx}`;
+                input.value = optIdx;
+                input.id = `q${idx}_opt${optIdx}`;
+                if (inputType === 'checkbox') {
+                    input.classList.add('chkbox');
+                }
+                const label = document.createElement('label');
+                label.htmlFor = input.id;
+                label.className = 'option';
+                label.appendChild(input);
+                label.appendChild(document.createTextNode(` ${opt}`));
+                optionsDiv.appendChild(label);
+            });
+            container.appendChild(card);
+        });
+    }
+
+    // Получение выбранных ответов по каждому вопросу (массив индексов)
+    function getUserAnswers() {
+        const userAnswers = [];
+        for (let i = 0; i < questionsData.length; i++) {
+            const q = questionsData[i];
+            if (q.type === 'radio') {
+                const radios = document.querySelectorAll(`input[name="q${i}"]`);
+                let selectedVal = null;
+                for (let r of radios) {
+                    if (r.checked) {
+                        selectedVal = parseInt(r.value);
+                        break;
+                    }
+                }
+                userAnswers.push(selectedVal !== null ? [selectedVal] : []);
+            } 
+            else if (q.type === 'checkbox') {
+                const checkboxes = document.querySelectorAll(`input[type="checkbox"].chkbox, input[type="checkbox"]`);
+                const containerCheck = [];
+                // более точный отбор: ищем все checkbox внутри options у данного вопроса
+                const card = document.getElementById('questionsContainer').children[i];
+                const checks = card.querySelectorAll('input[type="checkbox"]');
+                checks.forEach(cb => {
+                    if (cb.checked) {
+                        containerCheck.push(parseInt(cb.value));
+                    }
+                });
+                userAnswers.push(containerCheck);
+            }
+        }
+        return userAnswers;
+    }
+
+    // Подсчёт баллов и детальный фидбек
+    function calculateScore(userAnswers) {
+        let correctCount = 0;
+        const details = [];
+        for (let i = 0; i < questionsData.length; i++) {
+            const q = questionsData[i];
+            const user = userAnswers[i];
+            const correct = q.correct;
+            let isCorrect = false;
+            if (!user || user.length === 0) {
+                isCorrect = false;
+            } else {
+                if (q.type === 'radio') {
+                    if (user.length === 1 && correct.length === 1 && user[0] === correct[0]) isCorrect = true;
+                } else {
+                    // checkbox: сравниваем множества (порядок не важен)
+                    if (user.length === correct.length && user.every(v => correct.includes(v))) isCorrect = true;
+                }
+            }
+            if (isCorrect) correctCount++;
+            details.push({ num: i+1, isCorrect, correctAnswer: correct, userAnswer: user, text: q.text.substring(0, 80) });
+        }
+        return { correctCount, total: questionsData.length, details };
+    }
+
+    function displayResult(scoreObj) {
+        const resultDiv = document.getElementById('resultBlock');
+        const scoreSpan = document.getElementById('scoreValue');
+        const feedbackDiv = document.getElementById('feedbackMsg');
+        const percent = Math.round((scoreObj.correctCount / scoreObj.total) * 100);
+        scoreSpan.innerHTML = `✅ Правильных ответов: ${scoreObj.correctCount} из ${scoreObj.total} (${percent}%)`;
+        let feedbackHtml = `<strong>📌 Анализ результатов:</strong><br>`;
+        if (percent >= 85) feedbackHtml += `🎉 Отличный результат! Вы глубоко разбираетесь в вопросах адаптации детей-мигрантов и путях их интеграции.`;
+        else if (percent >= 60) feedbackHtml += `📘 Хороший результат, но стоит повторить темы языкового барьера и роли социального педагога. Рекомендуем разделы 2.2 и 3.1.`;
+        else feedbackHtml += `📖 Стоит детальнее изучить главы 1 и 2: понятия «культурный шок», психологические особенности, а также организацию поликультурной среды. Используйте учебные материалы.`;
+        
+        feedbackHtml += `<br><br><details><summary>🔍 Подробная развёртка (правильные ответы/ваши варианты)</summary><div style="margin-top:12px;">`;
+        for (let d of scoreObj.details) {
+            const mark = d.isCorrect ? '✅' : '❌';
+            let correctStr = '';
+            if (d.correctAnswer && d.correctAnswer.length) {
+                const corrIdx = d.correctAnswer;
+                const qData = questionsData[d.num-1];
+                correctStr = corrIdx.map(idx => qData.options[idx]).join('; ');
+            }
+            let userStr = (d.userAnswer && d.userAnswer.length) ? d.userAnswer.map(idx => questionsData[d.num-1].options[idx]).join('; ') : '(нет ответа)';
+            feedbackHtml += `<div style="margin-bottom:10px;">${mark} <strong>Вопрос ${d.num}:</strong> ${d.text}...<br> 
+            <span style="color:#2c5a7a;">✓ Верный ответ: ${correctStr}</span><br>
+            <span style="color:#6f6f6f;">✗ Ваш ответ: ${userStr}</span></div>`;
+        }
+        feedbackHtml += `</div></details><br><i>Автор методических материалов: Крычева Наталья Петровна</i>`;
+        feedbackDiv.innerHTML = feedbackHtml;
+        resultDiv.style.display = 'block';
+        // Плавный скролл к результатам
+        resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function resetQuiz() {
+        // сброс всех radio и checkbox
+        const allRadios = document.querySelectorAll('input[type="radio"]');
+        const allChecks = document.querySelectorAll('input[type="checkbox"]');
+        allRadios.forEach(r => r.checked = false);
+        allChecks.forEach(c => c.checked = false);
+        const resultDiv = document.getElementById('resultBlock');
+        if (resultDiv) resultDiv.style.display = 'none';
+        // дополнительно скролл наверх
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function checkAndShow() {
+        const userAnswers = getUserAnswers();
+        const scoreObj = calculateScore(userAnswers);
+        displayResult(scoreObj);
+    }
+
+    // инициализация после загрузки DOM
+    document.addEventListener('DOMContentLoaded', () => {
+        renderQuiz();
+        const checkBtn = document.getElementById('checkBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        if (checkBtn) checkBtn.addEventListener('click', checkAndShow);
+        if (resetBtn) resetBtn.addEventListener('click', resetQuiz);
+    });
+</script>
+</body>
+</html>
+```
